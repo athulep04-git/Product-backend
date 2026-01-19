@@ -9,7 +9,7 @@ exports.addproduct=async(req,res)=>{
         res.status(200).json({message:"add product success",newproduct})
     }
     catch(err){
-        res.status(400).json("error"+err)
+        res.status(500).json("error"+err)
     }
 }
 
@@ -21,6 +21,23 @@ exports.getproduct=async(req,res)=>{
         res.status(200).json({message:"product found",allproducts})
     }
     catch(err){
-        res.status(400).json("error"+err)
+        res.status(500).json("error"+err)
+    }
+}
+
+//get a product
+exports.getoneproduct=async(req,res)=>{
+    const {id}=req.params
+    try{
+        const oneproduct=await product.findById(id)
+        if(oneproduct){
+            res.status(200).json({message:"product found",oneproduct})
+        }
+        else{
+            res.status(404).json({message:"product not found"})
+        }
+    }
+    catch(err){
+        res.status(500).json("error"+err)     
     }
 }
