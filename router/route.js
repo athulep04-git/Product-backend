@@ -6,8 +6,6 @@ route.post('/api/addproduct',productController.addproduct)
 route.get('/api/getproduct',productController.getproduct)
 route.get('/api/getoneproduct/:id',productController.getoneproduct)
 route.put('/api/updateproduct/:id',productController.updateproduct)
-
-
-
+route.delete('/api/deleteproduct/:id',productController.deleteProduct)
 
 module.exports=route
