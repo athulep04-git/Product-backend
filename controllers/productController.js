@@ -41,3 +41,20 @@ exports.getoneproduct=async(req,res)=>{
         res.status(500).json("error"+err)     
     }
 }
+
+//update a product
+exports.updateproduct=async(req,res)=>{
+    const {id}=req.params
+    const {name,price,category,description}=req.body
+    try{
+        const updateProduct=await product.findByIdAndUpdate(
+            id,
+            {name,price,category,description},
+            {new:true}
+        )
+        res.status(200).json({message:"product updated",updateProduct})
+    }
+    catch(err){
+        res.status(500).json("error"+err)
+    }
+}
